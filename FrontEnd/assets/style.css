@@ -186,3 +186,64 @@ footer nav ul {
 	margin: 2em
 }
 
+/*Login*/
+
+#login_form {
+	width: 35%;
+	margin: auto;
+	margin-top: 5rem;
+}
+
+#login_form>* {
+	text-align: center;
+}
+
+#login_form h2 {
+	margin-bottom: 20px;
+}
+
+#login_form form {
+	text-align: left;
+	margin-top: 30px;
+	display: flex;
+	flex-direction: column;
+}
+
+#login_form input {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#login_form label {
+	margin: 2em 0 1em 0;
+	font-weight: 700;
+	color: #838383;
+}
+
+#login_form textarea {
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#pswd_forgot>a {
+	text-align: center;
+	display: block;
+	color: #8d8d8d;
+	margin-bottom: 10rem;
+	font-size: 14px;
+	font-weight: 600;
+	font-family: "Work Sans";
+}
+
+#sumbit {
+	font-family: "Syne";
+	font-weight: 700;
+	color: white;
+	background-color: #1d6154;
+	margin: 2em auto;
+	width: 210px;
+	text-align: center;
+	border-radius: 60px;
+}
