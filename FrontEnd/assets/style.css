@@ -247,3 +247,26 @@ footer nav ul {
 	text-align: center;
 	border-radius: 60px;
 }
+
+.categories {
+	display: flex;
+	justify-content: center;
+}
+
+.categories button{
+	background-color: #fff;
+	color: #1D6154;
+	border: 1px solid #1D6154;
+	border-radius: 60px;
+	padding: 10px;
+	font-size: 20px;
+	margin: 10px;
+	font-family: Syne;
+	margin-bottom: 50px;
+
+}
+
+.categories button:hover {
+	background-color: #1D6154;
+	color: #fff;
+}
