@@ -2,14 +2,18 @@
 import {
     getWorks,
     displayImage,
+    afficherImagesModal,
+    attachEditEventListeners,
 } from './app.js';
-getWorks()
-.then(images => displayImage(images))
 
 document.addEventListener("DOMContentLoaded",function(){
-    let token;
-    if(sessionStorage.getItem(token) !== "undefined"){
-        console.log('success');
+
+    if(sessionStorage.getItem("token") && sessionStorage.getItem("token") !== "undefined"){
+        console.log('Connected');
+        const toggleEdit = document.querySelector('.edit-button');
+        toggleEdit.style.display = 'block';
+        const toggleEditBar = document.querySelector('.container-edition');
+        toggleEditBar.style.display = 'flex';
         document.getElementById("login").innerHTML="logout";
 
         let LogoutButton = document.getElementById("login");
@@ -17,8 +21,15 @@ document.addEventListener("DOMContentLoaded",function(){
          clearSessionStorage();
         })
     }
-
+    getWorks()
+    .then (images => { 
+        displayImage(images);
+        afficherImagesModal(images);
+        attachEditEventListeners(images);
+                    
+    });
 });
+
 
 CategoriesButton();
 function clearSessionStorage(){
