@@ -62,7 +62,9 @@ closeButton2.addEventListener('click', function() {
 });
 // Ouverture du formulaire d'ajout de projet et fermeture de la modale d'édition
 const openModal2 = function(e) {
-    e.preventDefault();
+   if(e != null){
+     e.preventDefault();
+   };
     const target = document.querySelector('#modal2');
     const overlay = document.querySelector('.overlay');
     target.style.display = 'flex';
@@ -75,7 +77,16 @@ const openModal2 = function(e) {
 
 }
 const ajouterPhoto = document.querySelector('.AddProject')
-ajouterPhoto.addEventListener('click',openModal2);
+ajouterPhoto.addEventListener('click',function(){
+    const titleInput = document.getElementById('title');
+    const categorySelect = document.getElementById('category-select');
+    titleInput.value = ""; // Réinitialiser le titre
+    categorySelect.value = 0; // Réinitialiser la catégorie
+    
+    const previewContainer = document.getElementById('image-preview-container');
+    previewContainer.style.display = 'none'; // Masquer la prévisualisation d'image
+    openModal2();
+});
 
 //bouton précédent
 const backButton = document.querySelector('.back-button');
@@ -119,6 +130,9 @@ export function afficherImagesModal(images) {
             supprimerImage(item.id); // Appel de la fonction pour supprimer l'image
             figure.remove(); // Suppression de la figure du DOM
         });
+        figcaption.addEventListener('click',() => {
+            editerEvent(images,item.id);
+        });
         figure.append(deleteIcon);
         figcaption.textContent = "éditer";
         figcaption.id = "figcaptionModal";
@@ -153,23 +167,11 @@ function supprimerImage(imageId) {
     });
 }
 
-//Fonction bouton EDITER 
-export function attachEditEventListeners(images) {
-    const figcaptions = document.querySelectorAll('figcaption#figcaptionModal');
-    console.log(figcaptions.length);
-    figcaptions.forEach(figcaption => {
-        console.log('test');
-        figcaption.addEventListener('click', () => console.log('Bouton éditer cliqué'))
-        });
-    
-}
 
-function editerEvent(event) {
-    // Récupérez l'ID de l'image à partir de l'attribut data-id
-    const idImage = event.target.getAttribute('data-id');
+function editerEvent(images, imageId) {
     
     // Récupérez les détails de l'image correspondante en utilisant son ID
-    const imageDetails = images.find(image => image.id === idImage);
+    const imageDetails = images.find(image => image.id === imageId);
     
     // Pré-remplissage des champs de la modal2 avec les données de l'image correspondante
     const titleInput = document.getElementById('title');
@@ -177,10 +179,16 @@ function editerEvent(event) {
     
     titleInput.value = imageDetails.title;
     categorySelect.value = imageDetails.categoryId;
+
+    // Prévisualisation de l'image
+    const previewImage = document.getElementById('preview-image');
+    previewImage.src = imageDetails.imageUrl;
+    const previewContainer = document.getElementById('image-preview-container');
+    previewContainer.style.display = 'block';
+    const inputFile = document.querySelector('.input-file');
+    inputFile.style.display = 'none';
     
-    // Affiche la modal2
     openModal2();
-    
 }
                                                             //SUPPRIMER TOUS LES TRAVAUX//
 function supprimerToutlesTravaux() {

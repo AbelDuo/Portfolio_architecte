@@ -3,7 +3,7 @@ import {
     getWorks,
     displayImage,
     afficherImagesModal,
-    attachEditEventListeners,
+
 } from './app.js';
 
 document.addEventListener("DOMContentLoaded",function(){
@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded",function(){
     .then (images => { 
         displayImage(images);
         afficherImagesModal(images);
-        attachEditEventListeners(images);
                     
     });
 });
