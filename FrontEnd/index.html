@@ -37,16 +37,19 @@
 		<figure>
 			<img src="./assets/images/sophie-bluel.png" alt="">
 		</figure>
+		<button class="edit-button" id="button2" style="display: none"><i class="fa-regular fa-pen-to-square"></i>Modifier</button>
 		<article>
+			<button class="edit-button" id="button3" style="display: none"><i class="fa-regular fa-pen-to-square"></i>Modifier</button>
 			<h2>Designer d'espace</h2>
 			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
 			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
 			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
 		</article>
+	
 	</section>
 	<section id="portfolio">
 			<h2>Mes Projets</h2>
-			<button class="edit-button" style="display: none"><i class="fa-regular fa-pen-to-square"></i>Modifier</button>
+			<button class="edit-button" id="button1" style="display: none"><i class="fa-regular fa-pen-to-square"></i>Modifier</button>
 			<aside id="modal1" class="modal" style="display: none;">
 				<div class= "overlay"></div>
 					<div class="modal-wrapper">
@@ -79,6 +82,7 @@
 									<span class="text-caption" style="display: block;">jpg,png: 4mo max</span>
 								</div>
 								<div id="image-preview-container" style="display: none;">
+									<button class="changer-image-btn">Changer image</button>
 									<img id="preview-image" src="#" alt="Aperçu de l'image" style="max-width: 100%; height: auto;">
 								</div>
 							<div class="form-group">
@@ -100,7 +104,8 @@
 						</div>
 
 						<div id="bottom-modal">
-							<button class="Ajouter">Valider</button>
+							<button class="Ajouter" style="display:none;">Valider</button>
+							<button class="Valider"style="display:none">Valider</button>
 						</div>
 					</div>
 				

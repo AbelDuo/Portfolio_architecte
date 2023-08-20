@@ -10,8 +10,9 @@ document.addEventListener("DOMContentLoaded",function(){
 
     if(sessionStorage.getItem("token") && sessionStorage.getItem("token") !== "undefined"){
         console.log('Connected');
-        const toggleEdit = document.querySelector('.edit-button');
-        toggleEdit.style.display = 'block';
+        const toggleEdit = document.querySelectorAll('.edit-button');
+        console.log(toggleEdit);
+        toggleEdit.forEach(button => button.style.display="block");
         const toggleEditBar = document.querySelector('.container-edition');
         toggleEditBar.style.display = 'flex';
         document.getElementById("login").innerHTML="logout";

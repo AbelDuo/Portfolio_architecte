@@ -295,7 +295,7 @@ footer nav ul {
     background-color: #fff;
     color: black;
     padding: 10px;
-    padding-left: 15px;
+    padding-left: 15wpx;
     padding-right: 20px;
     border-radius: 20px;
     border: 1px white solid;
@@ -311,7 +311,15 @@ footer nav ul {
 	top: -160px; 
 	right: -675px;
 }
-
+#button2{
+	top:175px ;
+	right:475px ;
+}
+#button3{
+	top:0px;
+	right:10px;
+	
+}
 .modal{
 	display: block;
 	height:100%;
@@ -422,6 +430,7 @@ footer nav ul {
 	width: 230px;
 	transition: all 100ms linear;
 }
+
 #modal-content{
 	margin-bottom: 60px;
 	width: 100%;
@@ -595,7 +604,22 @@ footer nav ul {
 	width: 230px;
 	transition: all 100ms linear;
 }
-
+.Valider {
+	margin-top: 1rem;
+	background: #1d6154;
+	border: 1px green solid;
+	border-radius: 20px;
+	padding: 10px;
+	color: #fff;
+	padding-left: 35px;
+	padding-right: 35px;
+	margin-bottom: 1rem;
+	margin-bottom: 1rem;
+	font-size: 15px;
+	cursor: pointer;
+	width: 230px;
+	transition: all 100ms linear;
+}
 .back-button{
 	cursor: pointer;
 	position: absolute;
@@ -603,10 +627,6 @@ footer nav ul {
 	left: 10px;
 	font-size: 25px;
 }
-#modal2 #modal-content{
-	margin-top: 75px;
-}
-
 
 #figcaptionModal:hover{
 	cursor:pointer;
@@ -617,6 +637,24 @@ footer nav ul {
 	object-fit: contain;
 }
 #image-preview-container{
+	padding-top:30px;
 	max-height: 380px;
 	overflow: hidden;
+}
+
+.changer-image-btn{
+	padding-left: 40px;
+	padding-right: 40px;
+	background-color: #CBD6DC;
+	border: 1px solid #CBD6DC;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-radius: 20px;
+	color: #306685;
+	position: relative;
+	top: -20px;
+	font-family: inter, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	
 }

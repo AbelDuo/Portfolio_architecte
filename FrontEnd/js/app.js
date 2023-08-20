@@ -45,7 +45,7 @@ const closeModal = function (e){
     e.preventDefault();
     modal.style.display = 'none';
 }
-const editButton = document.querySelector('.edit-button');
+const editButton = document.querySelector('#button1');
 editButton.addEventListener('click', openModal);
 
 const closeButton1 = document.querySelector('.close-button');
@@ -65,6 +65,7 @@ const openModal2 = function(e) {
    if(e != null){
      e.preventDefault();
    };
+   
     const target = document.querySelector('#modal2');
     const overlay = document.querySelector('.overlay');
     target.style.display = 'flex';
@@ -74,15 +75,39 @@ const openModal2 = function(e) {
     overlay.addEventListener('click', function(e) {
         e.stopPropagation();
     });
+const ajouterPhoto = document.querySelector('.AddProject')
+ajouterPhoto.addEventListener('click',function(){
+    // ...
+    
+    // Afficher le champ de type "file"
+    const fileInput = document.getElementById('image');
+    fileInput.style.display = 'flex';
+    
+    // ...
+});
 
+// Ajouter un bouton pour déclencher le champ de type "file"
+const changerImageBtn = document.querySelector('.changer-image-btn');
+changerImageBtn.addEventListener('click', function() {
+    const imageInput = document.getElementById('image');
+    imageInput.click(); // Déclenche le champ de type "file"
+});
 }
 const ajouterPhoto = document.querySelector('.AddProject')
 ajouterPhoto.addEventListener('click',function(){
     const titleInput = document.getElementById('title');
+    const ajouterProject = document.querySelector('.Ajouter')
     const categorySelect = document.getElementById('category-select');
+    const fileInput = document.querySelector('.input-file');
+    ajouterProject.style.display = 'block';
+    fileInput.style.display = 'flex';
     titleInput.value = ""; // Réinitialiser le titre
     categorySelect.value = 0; // Réinitialiser la catégorie
-    
+    const ajouterButton = document.querySelector('.Ajouter');
+    ajouterButton.style.display = 'block';
+    const validerButton = document.querySelector('.Valider');
+    validerButton.style.display = 'none';
+
     const previewContainer = document.getElementById('image-preview-container');
     previewContainer.style.display = 'none'; // Masquer la prévisualisation d'image
     openModal2();
@@ -124,6 +149,13 @@ export function afficherImagesModal(images) {
             "icon-drag"
         );
         figure.append(editIcon);
+        figure.addEventListener("mouseover", function () {
+        editIcon.style.display = "block";
+    });
+
+    figure.addEventListener("mouseout", function () {
+        editIcon.style.display = "none";
+    });
         const deleteIcon = document.createElement("i");
         deleteIcon.classList.add("bx", "fa-solid", "fa-trash-can", "icon-trash");
         deleteIcon.addEventListener("click", () => {
@@ -133,6 +165,8 @@ export function afficherImagesModal(images) {
         figcaption.addEventListener('click',() => {
             editerEvent(images,item.id);
         });
+
+        
         figure.append(deleteIcon);
         figcaption.textContent = "éditer";
         figcaption.id = "figcaptionModal";
@@ -169,27 +203,53 @@ function supprimerImage(imageId) {
 
 
 function editerEvent(images, imageId) {
-    
-    // Récupérez les détails de l'image correspondante en utilisant son ID
     const imageDetails = images.find(image => image.id === imageId);
-    
-    // Pré-remplissage des champs de la modal2 avec les données de l'image correspondante
     const titleInput = document.getElementById('title');
     const categorySelect = document.getElementById('category-select');
-    
+
+    const oldTitle = imageDetails.title;
+    const oldCategoryId = imageDetails.categoryId;
+
     titleInput.value = imageDetails.title;
     categorySelect.value = imageDetails.categoryId;
 
-    // Prévisualisation de l'image
+    const ajouterButton = document.querySelector('.Ajouter');
+    ajouterButton.style.display = 'none';
+    const validerButton = document.querySelector('.Valider');
+    validerButton.style.display = 'block';
+
+
     const previewImage = document.getElementById('preview-image');
     previewImage.src = imageDetails.imageUrl;
+
+    const modal2 = document.querySelector('#modal2');
+
+    validerButton.addEventListener('click', function() {
+        const newTitle = titleInput.value;
+        const newCategoryId = categorySelect.value;
+
+        // Si les valeurs ont changé, mettez à jour les détails de l'image
+        if (oldTitle !== newTitle || oldCategoryId !== newCategoryId) {
+            imageDetails.title = newTitle;
+            imageDetails.categoryId = newCategoryId;
+
+            // Mettre à jour le contenu de la galerie d'images
+            displayImage(images);
+
+            // Fermez la modal de l'édition
+            modal2.style.display = 'none';
+        }
+    });
+
     const previewContainer = document.getElementById('image-preview-container');
-    previewContainer.style.display = 'block';
     const inputFile = document.querySelector('.input-file');
+
+    previewContainer.style.display = 'block';
     inputFile.style.display = 'none';
-    
+
     openModal2();
 }
+
                                                             //SUPPRIMER TOUS LES TRAVAUX//
 function supprimerToutlesTravaux() {
     // Récupère la liste de tous les éléments
@@ -250,12 +310,13 @@ deleteButton.addEventListener('click', (e) => {
 // envoi du projet via l'API fetch
 
 function ajouterTravail() {
-
+    const inputFile = document.querySelector('.input-file');
     const imageInput = document.getElementById('image');
     const imageUrl = imageInput.files[0];
     const title = document.getElementById('title').value;
     const categoryId = document.getElementById('category-select').value;
     const token = sessionStorage.getItem("token");
+    
 
     const data = new FormData();
     data.append('title', title);
@@ -313,6 +374,7 @@ boutonAjouter.addEventListener('click', async (event) => {
     const fileInput = document.getElementById("image"); 
     const titreInput = document.getElementById("title");
     const categorieSelect = document.getElementById("category-select");
+    console.log(fileInput.value);
 
     if (!fileInput.value) {
         event.preventDefault();
